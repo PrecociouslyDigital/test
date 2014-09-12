@@ -35,7 +35,6 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        //hey! Comment!
         stickPut = controller.getAxis(AxisType.kX);
         motor.set(stickPut);//back and forth between speeds, -1.0 to 1.0
     }
