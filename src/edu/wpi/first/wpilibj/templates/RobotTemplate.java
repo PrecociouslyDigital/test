@@ -6,29 +6,30 @@
 /*----------------------------------------------------------------------------*/
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-
-import edu.wpi.first.wpilibj.Joystick.AxisType;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.Joystick.*;
 
 public class RobotTemplate extends IterativeRobot {
-    
+
     public double stickPut;
     public Joystick controller;
-    public SpeedController motor;
-    
+    public SpeedController motor1, motor2, motor3, motor4;
+    double distance = 0;
     public void robotInit() {
+        
         controller = new Joystick(1);
-        motor = new Talon(1);
+        motor1 = new Talon(1);
+        motor2 = new Talon(2);
+        motor3 = new Talon(3);
+        motor4 = new Talon(4);
+        stickPut = 0;
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        
+
     }
 
     /**
@@ -36,14 +37,28 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         stickPut = controller.getAxis(AxisType.kX);
-        motor.set(stickPut);//back and forth between speeds, -1.0 to 1.0
-    }
+        distance++;
+        if(distance <= 0){
+            motor1.set(0.2);//back and forth between speeds, -1.0 to 1.0
+        }else{
+            motor1.set(0);
+        }
+                }
 
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-        
+
     }
-    
+
+    public void turn(double maxRate, double turn, SpeedController motorOne, SpeedController motorTwo) {
+        if (turn >= 0) {
+            boolean right = true;
+        } else {
+            boolean right = false;
+        }
+
+    }
+
 }
